@@ -1,0 +1,178 @@
+<html>
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+        <title>确认购买</title>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/plugins/swiper/css/main.min.css">
+        <script src="__PUBLIC__/plugins/swiper/js/jquery-1.10.1.min.js"></script>
+    </head>
+    <body>
+   <div class="writeAll">
+    
+    <div class="confirm-pic">
+        <img src="http://cdn.roseone.net/anxin/xianjin/Content/images/write-pic1.png"/>
+    </div>
+    <div class="fillTitle">
+        <span>投保信息 </span>
+        <i> </i>
+    </div>
+    <div class="info-mid">
+        <p class="info-row">
+            <span>
+                <label class="info-left">
+                    心上人姓名：
+                </label>
+                <input class="form-con form-con1" data-error="请填写心上人姓名" id="Spouse" maxlength="18"
+                name="Spouse" style="margin:0;" type="text" value="" />
+            </span>
+        </p>
+        <p class="info-row info-SpouseConfirm" style="color:#e07707; display: none;">
+            <span>
+                <label class="info-left">
+                    再一次输入 心上人姓名：
+                </label>
+                <input type="text" id="SpouseConfirm" class="form-con form-con1" data_error="请再一次输入心上人姓名"
+                style="margin:0;" maxlength="18" />
+            </span>
+        </p>
+        <p class="info-row">
+            <span>
+                <label class="info-left">
+                    购买人姓名：
+                </label>
+                <input class="form-con form-con1" data-error="请填写购买人姓名" id="UserName"
+                maxlength="18" name="UserName" style="margin:0;" type="text" value="" />
+            </span>
+        </p>
+        <p class="info-row">
+            <span>
+                <label class="info-left">
+                    购 买 人  身份证号码：
+                </label>
+                <input class="form-con form-con1" data-error="请填写购买人身份证号码" id="UserIDNo"
+                maxlength="25" name="UserIDNo" type="text" value="" />
+            </span>
+        </p>
+        <p class="info-row">
+            <span>
+                <label class="info-left">
+                    购 买 人 手&nbsp;机&nbsp;号&nbsp; 码：
+                </label>
+                <input class="form-con form-con1" data-error="请填写购买人手机号码" id="UserPhone"
+                maxlength="11" name="UserPhone" type="Tel" value="" />
+            </span>
+        </p>
+        <p class="info-row">
+            <span>
+                <label class="info-left">
+                    购 买 人 邮&nbsp;箱&nbsp;地&nbsp; 址：
+                </label>
+                <input class="form-con form-con1" data-error="请填写购买人邮箱地址" id="UserEmail"
+                maxlength="100" name="UserEmail" style="margin:0;" type="Email" value=""
+                />
+            </span>
+        </p>
+        <p class="info-row">
+            <span class="row-city">
+                <label class="info-left" style="margin-right: 2px;">
+                    购&nbsp;买&nbsp;份&nbsp;数：
+                </label>
+            </span>
+            <span class="row-sebor">
+                <input type="button" onclick="btnShopDels()" id="btnShopDel" class="shop-del" value="-" />
+                <input class="shop-stat" data-val="true" data-val-number="字段 ProductCount 必须是一个数字。"
+                data-val-required="ProductCount 字段是必需的。" id="ProductCount" name="ProductCount"
+                readonly="readonly" type="text" value="5" />
+                <input type="button" onclick="btnShopAdds()" id="btnShopAdd" class="shop-add" value="+" />
+                <span>
+                    (每对情侣限购5份)
+                </span>
+            </span>
+        </p>
+        <p class="info-row" style="clear:both">
+            <span>
+                <label class="info-left">
+                    三年后赔付：
+                </label>
+                <em class="InsuranceAmount">
+                    &yen;9995.00
+                </em>
+            </span>
+        </p>
+        <p class="hintInfo">
+            需填写心上人及本人真实有效的个人信息
+        </p>
+    </div>
+    <div class="form-tip-common">
+        <div class="validation-summary-valid" data-valmsg-summary="true">
+            <ul>
+                <li style="display:none">
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="choice clearfix">
+        <p>
+        </p>
+        <div class="cc_label">
+            <input type="checkbox" id="cbx_agree" name="cbx_agree" style="vertical-align: middle;"
+            />
+            <label class="read" for="cbx_agree" style="padding-left: 5px; vertical-align: middle; line-height: 20px; white-space: nowrap;">
+            </label>
+        </div>
+        <div class="cc_tiaoyue read">
+            <label for="cbx_agree">
+                我已阅读
+            </label>
+            <a href="javascript:" id="btnAgreement2">
+                《安心财产保险有限责任公司恋爱保险条款（2016 现金版）》
+            </a>
+        </div>
+        <p>
+        </p>
+    </div>
+    <div class="sr_red">
+        特别说明：本保险投保成功后，不可退保
+    </div>
+    <div class="payMoney">
+        <span class="money">
+            应付金额:
+        </span>
+        <p><span id="labAmount">￥495.00</span> <i></i></p>
+    </div>
+    <div class="payBtn">
+        <button type="button" id="btnConfirm" class="btn btn-large btn-red">去支付 </button>
+    </div>
+</div>
+    </body>
+    <script src="__PUBLIC__/js/layer/layer.js" type="text/javascript"></script>
+    <script>
+        function btnShopDels(){
+            var count_ = $("#ProductCount");
+            if(count_.val() > 1){
+                var new_ = parseInt(count_.val()) - 1;
+                $("#labAmount").html("￥"+new_*99.00);
+                count_.val(new_);
+            }
+        }
+        function btnShopAdds(){
+            var count_ = $("#ProductCount");
+            if(count_.val() >= 1 && count_.val() < 5){
+                var new_ = parseInt(count_.val()) + 1;
+                $("#labAmount").html("￥"+new_*99.00);
+                count_.val(new_);
+            }
+        }
+        $("#btnConfirm").click(function(){
+            var count_ = $("#ProductCount").val();
+            if(count_ > 5 || count_ < 1){
+                layer.msg("购买数量不正确");
+                return false;
+            }
+            window.location.href = "{:U('Activity/reconfirm')}?count="+count_;
+        })
+    </script>
+
+
+
+</html>

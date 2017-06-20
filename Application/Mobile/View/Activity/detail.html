@@ -1,0 +1,258 @@
+<html>
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+        <title>详情</title>
+        <script src="__PUBLIC__/plugins/swiper/js/jquery-1.10.1.min.js"></script>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'/>
+    </head>
+    <body>
+        <div class="product-detail">
+            <div class="pro-detail">
+                <ul>
+                    <li><img src="http://cdn.roseone.net/anxin/xianjin/Content/images/one_bg.png"></li>
+                    <li><img src="http://cdn.roseone.net/anxin/xianjin/Content/images/two_bg.png"></li>
+                    <li><img src="http://cdn.roseone.net/anxin/xianjin/Content/images/three_bg.png"></li>
+                    <li><img src="http://cdn.roseone.net/anxin/xianjin/Content/images/four_bg.png"></li>
+                    <li>
+                        <div class="clause">
+                            <a href="javascript:" id="btnAgreement">《安心财产保险有限责任公司恋爱保险条款（2016 现金版）》</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="buy">
+            <div class="buy-btn">
+                <div class="buy_left">
+                    <input type="button" id="btnShopDel" onclick="btnShopDels()" class="shop-del" value="-">
+                    <input type="text" id="ProductCount" class="shop-stat" value="5" readonly="readonly">
+                    <input type="button" id="btnShopAdd" onclick="btnShopAdds();" class="shop-add" value="+">
+                    <span>每对情侣<br>限购5份</span>
+                </div>
+                <div class="buy_right">
+                    <p id="textTip">3年后可获得9995元现金</p>
+                    <a id="btn299Buy" href="{:U('Activity/confirm')}" class="btn299Buy"><span id="money">495</span>元购买</a>
+                </div>
+            </div>
+        </div>
+        <script>
+            function btnShopDels(){
+                var count_ = $("#ProductCount");
+                if(count_.val() > 1){
+                    var new_ = parseInt(count_.val()) - 1;
+                    $("#money").html(new_*99);
+                    count_.val(new_);
+                }
+            }
+            function btnShopAdds(){
+                var count_ = $("#ProductCount");
+                if(count_.val() >= 1 && count_.val() < 5){
+                    var new_ = parseInt(count_.val()) + 1;
+                    $("#money").html(new_*99);
+                    count_.val(new_);
+                }
+            }
+        </script>
+    </body>
+    <style type="text/css">
+        *{
+            margin:0;
+            padding:0;
+        }
+        /***购买按钮控制搜索btn299Buy，购买须知内容控制搜索buyKnow***/
+body {
+    font-family: "Microsoft YaHei",Arial,Helvetica,sans-serif;
+    font-size: 10px;
+    background: #fafafa;
+    /*max-width:640px!important;
+    margin:0 auto;*/
+}
+
+a {
+    text-decoration: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+    a.btn:visited {
+        color: #fff;
+    }
+
+    a.btn:link {
+        color: #fff;
+    }
+
+    a.btn:hover {
+        color: #fff;
+    }
+
+    a.btn:active {
+        color: #fff;
+    }
+
+    ul, li {
+        list-style-type: none;
+    }
+        .buy {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 54px;
+    z-index: 100;
+    background: #ffffff;
+    box-shadow: 0px 3px 20px #eaeaea;
+}
+
+img {
+    max-width: 100%;
+}
+
+    .buy img {
+        display: block;
+        width: 100%;
+    }
+
+    .buy-btn {
+      width: 100%;
+        margin: 0 auto;
+      display: -moz-box; 
+    }
+    .buy-btn .buy_right{
+        float:right;
+         width: 41%;
+    }
+    .buy-btn .buy_left{
+        float:left;
+        width:59%;
+    }
+    .buy-btn .buy_left span{
+        color: #9d9d9d;
+        line-height: 16px;
+        float: left;
+        margin-top: 12px;
+        margin-left:5px;
+    }
+    .buy_left .shop-add,
+    .buy_left .shop-del{
+            width: 35px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        float: left;
+        margin-top: 15px;
+        margin-left: 5px;
+            font-size: 18px !important;
+    }
+    .buy_left .shop-stat{
+            width: 30px;
+            height:30px;
+        text-align: center;
+        margin-top:10px;
+        border: 1px solid #ccc;
+        float:left;
+    }
+
+    .buy-btn p{
+           line-height: 20px;
+        /* margin-right: 10px; */
+        color: #9d9d9d;
+        font-size: 12px;
+        float: right;
+    }
+
+    .buy-btn a {
+        display: block;
+        -webkit-box-flex: 1;
+        -moz-box-flex: 1;
+        text-align: center;
+        color: #ffffff;
+        font-weight: bold;
+        margin-right: 15px;
+        margin-top: 2px;
+        border-radius: 30px;
+        background: #ff7c1b;
+    }
+    .clause {
+      width: 100%;
+        /* height: 43px; */
+        background: #ffffff;
+        text-align: center;
+        line-height: 43px;
+        font-size: 12px;
+    }
+
+        .clause a {
+            color: #047fe7;
+    }
+    .product-detail {
+        width: 100%;
+        margin: 0 auto;
+        padding-bottom: 54px;
+        font-family: "华文细黑";
+        background: #fff;
+    }
+
+        .product-detail ul li img {
+            display: block;
+    }
+    .buy-btn .buy_left span{
+        color: #9d9d9d;
+        line-height: 16px;
+        float: left;
+        margin-top: 12px;
+        margin-left:5px;
+    }
+    
+/**如果需要显示一个299按钮width:50%;margin:5px auto;显示，**/
+/**如果需要显示两个按钮或者三个按钮，299的margin:5px auto注释**/
+.buy-btn .btn299Buy{
+width: 110px;
+    /* margin: 5px auto; */
+    /* display: block !important; */
+    line-height: 30px;
+    height: 30px;
+    border-radius: 20px;
+    text-align: center;
+    /* margin-left: 10px; */
+    float: right;
+    margin-right: 5px;
+}
+
+    .buy-btn .btn199Confirm {
+        width: 50%;
+        display: block !important;
+        line-height: 18px;
+        padding-top: 2px;
+}
+
+    .buy-btn .btn199Confirm2 {
+        width: 50%;
+        display: block !important;
+        line-height: 18px;
+        padding-top: 2px;
+}
+
+.199clause {
+    display: none !important;
+}
+
+.btn-orange-1 {
+    display: inline-block;
+    width: 42%;
+    height: 36px;
+    margin-top: 6px;
+    padding: 0;
+    font-size: 16px !important;
+    line-height: 36px !important;
+    color: #fff;
+    background: #e4393c;
+    box-shadow: 1px 1px 2px rgba(255,255,255,.2) inset,2px 2px 3px rgba(0,0,0,.18);
+}
+
+#btn299Buy.btn-orange-1 {
+    display: none;
+}
+
+    </style>
+</html>

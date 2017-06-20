@@ -1,0 +1,137 @@
+
+        <include file="Public:header" />
+
+
+        <!-- iCheck -->
+        <link href="__PUBLIC__/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+
+        <!-- bootstrap-progressbar -->
+        <link href="__PUBLIC__/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+        <!-- JQVMap -->
+        <link href="__PUBLIC__/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
+        <!-- bootstrap-daterangepicker -->
+        <link href="__PUBLIC__/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+
+
+
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+          <!-- top tiles -->
+          <div class="row tile_count">
+            <div class="col-md-6 col-sm-6 col-xs-6 tile_stats_count" style="padding-left: 25%;">
+              <span class="count_top"><i class="fa fa-user"></i> 总用户</span>
+              <div class="count">{$all_member_count}</div>
+              <if condition="$last_o_m egt 100">
+                <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>{$last_o_m}% </i> 对比上周上涨</span>
+                <else/>
+                <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>{$last_o_m}% </i> 对比上周下降</span>
+              </if>
+            </div>
+            <div class="col-md-6 col-sm-4 col-xs-6 tile_stats_count" style="padding-left: 25%;">
+              <span class="count_top"><i class="fa fa-check-square"></i> 今日新增用户数</span>
+              <div class="count green">{$today_member}</div>
+              <if condition="$tmember_p egt 100">
+                <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>{$tmember_p}% </i> 对比昨天上涨</span>
+                <else/>
+                <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>{$tmember_p}% </i> 对比昨天下降</span>
+              </if>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-6 tile_stats_count" style="padding-left: 25%;">
+              <span class="count_top"><i class="fa fa-clock-o"></i> 总订单数</span>
+              <div class="count">{$all_order_count}</div>
+              <if condition="$last_o_p egt 100">
+                <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>{$last_o_p}% </i> 对比上周上涨</span>
+                <else/>
+                <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>{$last_o_p}% </i> 对比上周下降</span>
+              </if>
+            </div>
+            <div class="col-md-6 col-sm-4 col-xs-6 tile_stats_count" style="padding-left: 25%;">
+              <span class="count_top"><i class="fa fa-check-square"></i> 今日新增订单数</span>
+              <div class="count green">{$today_order}</div>
+              <if condition="$all_today egt 100">
+                <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>{$all_today}% </i> 对比昨天上涨</span>
+                <else/>
+                <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>{$all_today}% </i> 对比昨天下降</span>
+              </if>
+            </div>
+            <div class="col-md-6 col-sm-4 col-xs-6 tile_stats_count" style="padding-left: 25%;">
+              <span class="count_top"><i class="fa fa-bar-chart"></i> 交易成功总数</span>
+              <div class="count">{$all_success_order_count}</div>
+              <if condition="$last_o_succ egt 100">
+                <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>{$last_o_succ}% </i> 对比上周上涨</span>
+                <else/>
+                <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>{$last_o_succ}% </i> 对比上周下降</span>
+              </if>
+            </div>
+            <div class="col-md-6 col-sm-4 col-xs-6 tile_stats_count" style="padding-left: 25%;">
+              <span class="count_top"><i class="fa fa-check-square"></i> 今日交易成功数</span>
+              <div class="count green">{$today_success_order}</div>
+              <if condition="$to_p egt 100">
+                <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>{$to_p}% </i> 对比昨天上涨</span>
+                <else/>
+                <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>{$to_p}% </i> 对比昨天下降</span>
+              </if>
+            </div>
+            <div class="col-md-6 col-sm-4 col-xs-6 tile_stats_count" style="padding-left: 25%;">
+              <span class="count_top"><i class="fa fa-check-square"></i> 昨日交易成功数</span>
+              <div class="count">{$last_success_order}</div>
+            </div>
+          </div>
+          <!-- /top tiles -->
+
+
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+
+        <include file="Public:min_footer" />
+
+        <!-- /footer content -->
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="__PUBLIC__/vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="__PUBLIC__/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="__PUBLIC__/vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="__PUBLIC__/vendors/nprogress/nprogress.js"></script>
+    <!-- Chart.js -->
+    <script src="__PUBLIC__/vendors/Chart.js/dist/Chart.min.js"></script>
+    <!-- gauge.js -->
+    <script src="__PUBLIC__/vendors/gauge.js/dist/gauge.min.js"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="__PUBLIC__/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <!-- iCheck -->
+    <script src="__PUBLIC__/vendors/iCheck/icheck.min.js"></script>
+    <!-- Skycons -->
+    <script src="__PUBLIC__/vendors/skycons/skycons.js"></script>
+    <!-- Flot -->
+    <script src="__PUBLIC__/vendors/Flot/jquery.flot.js"></script>
+    <script src="__PUBLIC__/vendors/Flot/jquery.flot.pie.js"></script>
+    <script src="__PUBLIC__/vendors/Flot/jquery.flot.time.js"></script>
+    <script src="__PUBLIC__/vendors/Flot/jquery.flot.stack.js"></script>
+    <script src="__PUBLIC__/vendors/Flot/jquery.flot.resize.js"></script>
+    <!-- Flot plugins -->
+    <script src="__PUBLIC__/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+    <script src="__PUBLIC__/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+    <script src="__PUBLIC__/vendors/flot.curvedlines/curvedLines.js"></script>
+    <!-- DateJS -->
+    <script src="__PUBLIC__/vendors/DateJS/build/date.js"></script>
+    <!-- JQVMap -->
+    <script src="__PUBLIC__/vendors/jqvmap/dist/jquery.vmap.js"></script>
+    <script src="__PUBLIC__/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+    <script src="__PUBLIC__/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="__PUBLIC__/vendors/moment/min/moment.min.js"></script>
+    <script src="__PUBLIC__/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="__PUBLIC__/js/custom.min.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name='viewport' content='width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no'/>
+    <meta name='apple-mobile-web-app-capable' content='yes' />
+    <meta name='full-screen' content='true' />
+    <meta name='screen-orientation' content='portrait' />
+    <meta name='x5-fullscreen' content='true' />
+    <meta name='360-fullscreen' content='true' />
+    <meta http-equiv='expires' content='0' />    <meta name="viewport" content="initial-scale=1, user-scalable=0, minimal-ui" charset="UTF-8">
+    <title>提现管理</title>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/index/css/style.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/index/css/dropload.css">
+    <script src="__PUBLIC__/index/src/js/zepto.min.js"></script>
+    <script src="__PUBLIC__/index/src/dist/dropload.min.js"></script>
+    <script src="__PUBLIC__/index/src/js/index.js"></script>
+</head>
+<body>
+    <div class="top-btn">
+        <div class="link-div btn-cash" onclick='window.location.href="{:U('Index/apply_withdrawals')}"'>
+            <i class="icon icon_0"></i>
+            <span>提现申请</span>
+        </div>
+        <div class="link-div btn-ewm">
+            <i class="icon icon_1"></i>
+            <span>公众号二维码</span>
+
+            <img class="flaotRwm" src="__PUBLIC__/index/images/rwm.png">
+        </div>
+    </div>
+
+    <div class="iScroll-list content">
+        <div class="contentPadding">
+            <ol class="tit">
+                <li>申请日期</li>
+                <li>申请金额</li>
+                <li class="last">审核状态</li>
+            </ol>
+            <div class="lists">
+                <ul>
+                    <foreach name="list" item="vo">
+                    <li>
+                        <span>{$vo.createtime|date="Y-m-d",###}</span>
+                        <span>{$vo.apply_cash}元</span>
+                        <span class="color-{$status_css[$vo['apply_status']]} last">{$status[$vo['apply_status']]}</span>
+                    </li>
+                    </foreach>
+                    <!--<li>-->
+                        <!--<span>2017-4-20</span>-->
+                        <!--<span>10000元</span>-->
+                        <!--<span class="color-red last">未通过</span>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<span>2017-4-20</span>-->
+                        <!--<span>10000元</span>-->
+                        <!--<span class="color-yellow last">审核中</span>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<span>2017-4-20</span>-->
+                        <!--<span>10000元</span>-->
+                        <!--<span class="color-blur last">通过</span>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<span>2017-4-20</span>-->
+                        <!--<span>10000元</span>-->
+                        <!--<span class="color-red last">未通过</span>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<span>2017-4-20</span>-->
+                        <!--<span>10000元</span>-->
+                        <!--<span class="color-yellow last">审核中</span>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<span>2017-4-20</span>-->
+                        <!--<span>10000元</span>-->
+                        <!--<span class="color-blur last">通过</span>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<span>2017-4-20</span>-->
+                        <!--<span>10000元</span>-->
+                        <!--<span class="color-red last">未通过</span>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<span>2017-4-20</span>-->
+                        <!--<span>10000元</span>-->
+                        <!--<span class="color-yellow last">审核中</span>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<span>2017-4-20</span>-->
+                        <!--<span>10000元</span>-->
+                        <!--<span class="color-blur last">通过</span>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<span>2017-4-20</span>-->
+                        <!--<span>10000元</span>-->
+                        <!--<span class="color-red last">未通过</span>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<span>2017-4-20</span>-->
+                        <!--<span>10000元</span>-->
+                        <!--<span class="color-yellow last">审核中</span>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<span>2017-4-20</span>-->
+                        <!--<span>10000元</span>-->
+                        <!--<span class="color-blur last">通过</span>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<span>2017-4-20</span>-->
+                        <!--<span>10000元</span>-->
+                        <!--<span class="color-red last">未通过</span>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<span>2017-4-20</span>-->
+                        <!--<span>10000元</span>-->
+                        <!--<span class="color-yellow last">审核中</span>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<span>2017-4-20</span>-->
+                        <!--<span>10000元</span>-->
+                        <!--<span class="color-blur last">通过</span>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<span>2017-4-20</span>-->
+                        <!--<span>10000元</span>-->
+                        <!--<span class="color-red last">未通过</span>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<span>2017-4-20</span>-->
+                        <!--<span>10000元</span>-->
+                        <!--<span class="color-yellow last">审核中</span>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<span>2017-4-20</span>-->
+                        <!--<span>10000元</span>-->
+                        <!--<span class="color-blur last">通过</span>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<span>2017-4-20</span>-->
+                        <!--<span>10000元</span>-->
+                        <!--<span class="color-red last">未通过</span>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<span>2017-4-20</span>-->
+                        <!--<span>10000元</span>-->
+                        <!--<span class="color-yellow last">审核中</span>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<span>2017-4-20</span>-->
+                        <!--<span>10000元</span>-->
+                        <!--<span class="color-blur last">通过</span>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<span>2017-4-20</span>-->
+                        <!--<span>10000元</span>-->
+                        <!--<span class="color-red last">未通过</span>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<span>2017-4-20</span>-->
+                        <!--<span>10000元</span>-->
+                        <!--<span class="color-yellow last">审核中</span>-->
+                    <!--</li>-->
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

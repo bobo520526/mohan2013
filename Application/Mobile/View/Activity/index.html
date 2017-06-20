@@ -1,0 +1,168 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'/>
+    <title>爱情保险</title>
+<link rel="stylesheet" href="__PUBLIC__/plugins/swiper/css/swiper.min.css">
+<link rel="stylesheet" href="__PUBLIC__/plugins/swiper/css/animate.min.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/plugins/swiper/css/main.css">
+<script src="__PUBLIC__/plugins/swiper/js/jquery-1.10.1.min.js"></script>
+<script src="__PUBLIC__/plugins/swiper/js/swiper.min.js"></script>
+<script src="__PUBLIC__/plugins/swiper/js/swiper.animate.min.js"></script>
+</head>
+<body>
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <foreach name="images" item="img">
+            <section class="swiper-slide swiper-slide1">
+              <img src="{$img}"/>
+            </section>
+        </foreach>
+
+        <!--<section class="swiper-slide swiper-slide2">-->
+          <!--<img src="__PUBLIC__/plugins/swiper/upload/sm1.jpg"/>-->
+        <!--</section>-->
+        <!--<section class="swiper-slide swiper-slide3">-->
+          <!--<img src="__PUBLIC__/plugins/swiper/upload/sm1.jpg"/>-->
+        <!--</section>-->
+    </div>
+   <img src="__PUBLIC__/plugins/swiper/images/arrow.png" style="width:20px;height:15px; top:460px; left:150px;" id="array" class="resize">
+
+   <div id="btnSendBoy" class="needbtn needDetail btnSendBoy"></div>
+   <div id="btnSendGirl" class="needbtn needDetail btnSendGirl" style="margin-right:20px"></div>
+   <div id="btnContinue" onclick="window.location.href='{:U('Activity/detail')}'" class="btn btn-red btnContinue" style=""><a href="{:U('Activity/detail')}">进入</a> </div>
+   <div id="audio_btn" onClick="playPause()" class="off" url="http://cdn.roseone.net/anxin/xianjin/mobile/music/2.mp3"></div>
+  
+  <div class="left-click i_icon" > <i></i></div>
+  <div class="right-click i_icon"> <i></i></div>
+  <audio src="http://cdn.roseone.net/anxin/xianjin/mobile/music/1.mp3"  id="media" autoplay="autoplay" loop="loop"></audio>
+
+
+  <div class="swiper-pagination"></div>  
+</div>
+
+
+<script type="text/javascript">
+    var myAudio = document.getElementById('media');
+    function playPause(){
+      console.log(myAudio.paused)
+        if(myAudio.paused){
+            myAudio.play();
+        }else{
+            myAudio.pause();
+        }
+    }
+    $(function(){
+        $("#btnSendBoy").click(function(){
+          $(".left-click").show()
+
+        })
+        $("#btnSendGirl").click(function(){
+          $(".right-click").show()
+
+        })
+        $(".i_icon i").click(function(){
+            $(".left-click,.right-click").hide()
+        })
+
+        $("#audio_btn").on("click",function(){
+          if($(this).hasClass('on')){
+            $(this).addClass('off')
+            $(this).removeClass('on')
+          }else{
+            $(this).addClass('on')
+            $(this).removeClass('off')
+
+          }
+        })
+
+    })
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>  
+  scaleW=window.innerWidth/320;
+  scaleH=window.innerHeight/480;
+  var in_btn = document.getElementById('btnContinue')
+  var resizes = document.querySelectorAll('.resize');
+            for (var j=0; j<resizes.length; j++) {
+             resizes[j].style.width=parseInt(resizes[j].style.width)*scaleW+'px';
+  		   resizes[j].style.height=parseInt(resizes[j].style.height)*scaleH+'px';
+  		   resizes[j].style.top=parseInt(resizes[j].style.top)*scaleH+'px';
+  		   resizes[j].style.left=parseInt(resizes[j].style.left)*scaleW+'px'; 
+            }
+  		  
+    var mySwiper = new Swiper ('.swiper-container', {
+     direction : 'vertical',
+     pagination: '.swiper-pagination',
+    //virtualTranslate : true,
+     mousewheelControl : true,
+     onInit: function(swiper){
+     swiperAnimateCache(swiper);
+     swiperAnimate(swiper);
+  	  },
+     onSlideChangeEnd: function(swiper){
+  	   swiperAnimate(swiper);
+//       console.log(swiper.activeIndex,swiper.slides.length)
+        if(swiper.activeIndex+1>=swiper.slides.length){
+          in_btn.style.display = "block";
+        }else{
+          in_btn.style.display = "none";
+        }
+      },
+  	onTransitionEnd: function(swiper){
+  	   swiperAnimate(swiper);
+      },
+  	
+  	
+  	watchSlidesProgress: true,
+
+        onProgress: function(swiper){
+          for (var i = 0; i < swiper.slides.length; i++){
+            var slide = swiper.slides[i];
+            var progress = slide.progress;
+            var translate = progress*swiper.height/4;  
+  		         scale = 1 - Math.min(Math.abs(progress * 0.5), 1);
+            var opacity = 1 - Math.min(Math.abs(progress/2),0.5);
+              slide.style.opacity = opacity;
+  		        es = slide.style;
+  		        es.webkitTransform = es.MsTransform = es.msTransform = es.MozTransform = es.OTransform = es.transform = 'translate3d(0,'+translate+'px,-'+translate+'px) scaleY(' + scale + ')';
+
+          }
+        },
+  	
+  	   onSetTransition: function(swiper, speed) {
+          for (var i = 0; i < swiper.slides.length; i++){
+            es = swiper.slides[i].style;
+  		      es.webkitTransitionDuration = es.MsTransitionDuration = es.msTransitionDuration = es.MozTransitionDuration = es.OTransitionDuration = es.transitionDuration = speed + 'ms';
+
+          }
+        },
+  	
+  	   })         
+  </script>
+
+<if condition="$signPackage neq null">
+    <include file="Public/share" />
+</if>
+</body>
+</html>

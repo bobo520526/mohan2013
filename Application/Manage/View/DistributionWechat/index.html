@@ -1,0 +1,153 @@
+<include file="Public:header" />
+
+<script src="__PUBLIC__/js/jquery-1.8.2.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/js/layer/layer.js" type="text/javascript"></script>
+
+<script>
+    function getRandomString(len,name) {
+        len = len || 32;
+        var $chars = 'ABCDEFGHJKLMNOPQRSTUVWXYZabcdefhijklmnoprstuvwxyz123456789'; // 默认去掉了容易混淆的字符oOLl,9gq,Vv,Uu,I1
+        var maxPos = $chars.length;
+        var strs = '';
+        for (i = 0; i < len; i++) {
+            strs += $chars.charAt(Math.floor(Math.random() * maxPos));
+        }
+        $('input[name="'+name+'"]').val(strs);
+    }
+</script>
+<!-- page content -->
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>分销微信配置</h3>
+            </div>
+            <if condition="1 eq 2">
+                <div class="title_right">
+                    <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+                              <button class="btn btn-default" type="button">Go!</button>
+                          </span>
+                        </div>
+                    </div>
+                </div>
+            </if>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+
+                    <div class="x_content">
+
+                        <form method="post" action="{:U('Manage/DistributionWechat/index')}" enctype="multipart/form-data" class="form-horizontal form-label-left">
+
+
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="token">
+                                    Token： <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12 input-group">
+                                    <input type="text" id="token" name="token" value="{$wechat.token}" placeholder="填写token" required="required" class="form-control col-md-7 col-xs-12"/>
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" onclick="getRandomString(16,'token')" type="button">随机生成</button>
+                            </span>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label for="appid" class="control-label col-md-3">AppID：</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12 input-group">
+                                    <input id="appid" type="text" name="appid" value="{$wechat.appid}" placeholder="填写公众号APPID" class="form-control col-md-7 col-xs-12" required="required">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label for="appsecret" class="control-label col-md-3 col-sm-3 col-xs-12">AppSecret：</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12 input-group">
+                                    <input id="appsecret" type="text" name="appsecret" value="{$wechat.appsecret}" placeholder="填写公众号AppSecret" class="form-control col-md-7 col-xs-12" required="required">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" onclick="getRandomString(32,'appsecret')" type="button">随机生成</button>
+                            </span>
+                                </div>
+                            </div>
+
+                            <!-- 微信已接通微信支付 -->
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="mchid">商户号： <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 input-group">
+                                        <input type="text" id="mchid" name="mchid" value="{$wechat.mchid}" placeholder="填写微信商户号" required="required" class="form-control col-md-7 col-xs-12">
+                                    </div>
+                                </div>
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="mchkey">商户支付密钥： <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 input-group">
+                                        <input type="text" id="mchkey" name="mchkey" value="{$wechat.mchkey}" placeholder="填写微信商户密匙" required="required" class="form-control col-md-7 col-xs-12">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" onclick="getRandomString(32,'mchkey')" type="button">随机生成</button>
+                                </span>
+                                    </div>
+                                </div>
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">商户证书： <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="file" name="apiclient_cert" />上传(apiclient_cert)
+                                        <if condition="$wechat['apiclient_cert'] neq null">
+                                            <span style="color:red;">已上传证书apiclient_cert</span>
+                                        </if>
+                                        <br>
+                                        <input type="file" name="apiclient_key" />上传(apiclient_key)
+                                        <if condition="$wechat['apiclient_key'] neq null">
+                                            <span style="color:red;">已上传证书apiclient_key</span>
+                                        </if>
+                                        <br>
+                                        <input type="file" name="rootca_pem" />上传(rootca.pem)
+                                        <if condition="$wechat['rootca_pem'] neq null">
+                                            <span style="color:red;">已上传证书rootca.pem</span>
+                                        </if>
+                                    </div>
+                                </div>
+
+
+                            <div class="ln_solid"></div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-md-offset-3">
+                                    <input type="hidden" name="id" value="{$wechat.id}" />
+                                    <button type="submit" class="btn btn-primary">提交</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /page content -->
+
+<!-- footer content -->
+<include file="Public:min_footer" />
+<!-- /footer content -->
+</div>
+</div>
+
+<!-- jQuery -->
+<script src="__PUBLIC__/vendors/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="__PUBLIC__/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="__PUBLIC__/vendors/fastclick/lib/fastclick.js"></script>
+<!-- NProgress -->
+<script src="__PUBLIC__/vendors/nprogress/nprogress.js"></script>
+<!-- validator -->
+<script src="__PUBLIC__/vendors/validator/validator.js"></script>
+
+<!-- Custom Theme Scripts -->
+<script src="__PUBLIC__/js/custom.min.js"></script>
+
+</body>
+</html>

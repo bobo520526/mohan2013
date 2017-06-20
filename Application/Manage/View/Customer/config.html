@@ -1,0 +1,200 @@
+<include file="Public:header" />
+<link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+<!-- bootstrap-progressbar -->
+<link href="../vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+<!-- PNotify -->
+<link href="../vendors/pnotify/dist/pnotify.css" rel="stylesheet">
+<link href="../vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
+<link href="../vendors/pnotify/dist/pnotify.nonblock.css" rel="stylesheet">
+
+<!-- page content -->
+<div class="right_col" role="main">
+  <div class="">
+    <div class="page-title"></div>
+
+    <div class="clearfix"></div>
+
+    <div class="">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2><i class="fa fa-bars"></i> 游戏配置</h2>
+            <ul class="nav navbar-right panel_toolbox">
+              <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+              </li>
+              <li><a class="close-link"><i class="fa fa-close"></i></a>
+              </li>
+            </ul>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+          <form action="" method="post">
+            <div class="" role="tabpanel" data-example-id="togglable-tabs">
+              <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">基本设置</a></li>
+                <!--<li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">返利设置</a></li>-->
+              </ul>
+              <div id="myTabContent" class="tab-content">
+                <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+
+                  <div class="item form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="min_coin">
+                      游戏扣币： <span class="required">*</span>
+                    </label>
+                    <span style="color: red;">每玩一次游戏所扣除的游戏金币，当前系统设置：{$deduction_coin}个，此设置较优先级</span>
+                    <div class="col-md-6 col-sm-6 col-xs-12 input-group">
+                      <input type="number" id="min_coin" name="min_coin" value="{$config.min_coin}" min="0" placeholder="每次玩游戏扣除的游戏金币" required="required" class="form-control col-md-7 col-xs-12">
+                              <span class="input-group-btn"><button class="btn btn-dark" type="button">个</button></span>
+                    </div>
+                  </div>
+                  <div class="item form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="games_time">
+                      游戏时间（秒）： <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12 input-group">
+                      <input type="number" id="games_time" name="games_time" value="{$config.games_time}" min="0" placeholder="游戏时间" required="required" class="form-control col-md-7 col-xs-12">
+                      <span class="input-group-btn"><button class="btn btn-dark" type="button">秒</button></span>
+                    </div>
+                  </div>
+                  <div class="item form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                      金币生成： <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12 input-group">
+                      <input type="text" id="generate_min_coin" name="generate_min_coin" value="{$config.generate_min_coin}" min="0" placeholder="最小金币"  class="form-control col-md-3 col-xs-3">
+                              <span class="input-group-btn"><button class="btn btn-dark" type="button">到</button></span>
+
+                      <input style="margin-left: -5px;" type="text" id="generate_max_coin" name="generate_max_coin" value="{$config.generate_max_coin}" min="0" placeholder="最大金币" class="form-control col-md-3 col-xs-3">
+                      <span class="input-group-btn"><button class="btn btn-primary" onclick="add_other_rule();" type="button">其他规则生成</button></span>
+                    </div>
+                    <span style="color: red;">已选择的其他规则或其他概率设置，对应的金币生成与概率设置将无效</span>
+                  </div>
+                  <div class="otherule">{$config.html}</div>
+
+                  <div class="item form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                      概率设置： <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12 input-group">
+                      <input type="number" id="probability" name="probability" value="{$config.probability}" min="0" placeholder="概率设置，0-100" required="required" class="form-control col-md-7 col-xs-12">
+                      <span class="input-group-btn"><button class="btn btn-primary" onclick="add_other_probability();" type="button">其他概率设置</button></span>
+                    </div>
+                    <if condition="$games['controllers'] eq 'CatchfishController'">
+                    <span style="color: red;">其他概率设置：由于有九种鱼，请设置成1-2-3-4-5-6-7-8-9的格式，数字代表概率，- 代表格式符号</span>
+                    </if>
+                  </div>
+                  <div class="otherprobability">{$config.other_probability_html}</div>
+
+
+                  <input type="hidden" id="rule_number" value="{$config.other_coins_number|default=1}" />
+                  <input type="hidden" id="rule_number2" value="{$config.other_probability_number|default=1}" />
+                  <div class="item form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="close_desc">游戏关闭说明 <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12 input-group">
+                      <textarea id="close_desc" required="required" name="close_desc" class="form-control col-md-7 col-xs-12">{$config.close_desc}</textarea>
+                    </div>
+                  </div>
+
+
+                </div>
+
+
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">提交</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>
+<!-- /page content -->
+
+<!-- footer content -->
+<include file="Public:min_footer" />
+<!-- /footer content -->
+</div>
+</div>
+
+<div id="custom_notifications" class="custom-notifications dsp_none">
+  <ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group">
+  </ul>
+  <div class="clearfix"></div>
+  <div id="notif-group" class="tabbed_notifications"></div>
+</div>
+
+<!-- jQuery -->
+<script src="__PUBLIC__/vendors/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="__PUBLIC__/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="__PUBLIC__/vendors/fastclick/lib/fastclick.js"></script>
+<!-- NProgress -->
+<script src="__PUBLIC__/vendors/nprogress/nprogress.js"></script>
+<!-- bootstrap-progressbar -->
+<script src="__PUBLIC__/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+<!-- iCheck -->
+<script src="__PUBLIC__/vendors/iCheck/icheck.min.js"></script>
+<!-- PNotify -->
+<script src="__PUBLIC__/vendors/pnotify/dist/pnotify.js"></script>
+<script src="__PUBLIC__/vendors/pnotify/dist/pnotify.buttons.js"></script>
+<script src="__PUBLIC__/vendors/pnotify/dist/pnotify.nonblock.js"></script>
+
+<!-- Custom Theme Scripts -->
+<script src="__PUBLIC__/js/custom.min.js"></script>
+<script>
+  function remove_parents(obj){
+    $(obj).parent().parent().parent().remove();
+  }
+
+  function add_other_rule(){
+    var len = get_other_rule_length('rule_number');
+    var html = '';
+    html += '<div class="item form-group othersrules">';
+    html += '<label class="control-label col-md-3 col-sm-3 col-xs-12">';
+    html += '规则'+len+'： <span class="required">*</span>';
+    html += '</label>';
+    html += '<div class="col-md-6 col-sm-6 col-xs-12 input-group">';
+    html += '<input type="number" name="other_coins[]" value="" min="0" placeholder="游戏币数" required="required" class="form-control col-md-7 col-xs-12">';
+    html += '<span class="input-group-btn"><button class="btn btn-danger" type="button" onclick="remove_parents(this)">删除</button></span>';
+    html += '</div>';
+//    html += '<div class="col-md-6 col-sm-6 col-xs-12 input-group">';
+//    html += '<input type="text" name="other_generate_min_coin[]" value="" required="required" min="0" placeholder="最小金币"  class="form-control col-md-3 col-xs-3">';
+//    html += '<span class="input-group-btn"><button class="btn btn-dark" type="button">到</button></span>';
+//    html += '<input style="margin-left: -5px;" type="text" name="other_generate_max_coin[]" value="" required="required" min="0" placeholder="最大金币" class="form-control col-md-3 col-xs-3">';
+//    html += '<span class="input-group-btn"><button class="btn btn-danger" type="button" onclick="remove_parents(this)">删除</button></span>';
+//    html += '</div>';
+
+    html += '</div>';
+    $(".otherule").append(html);
+  }
+
+  function add_other_probability(){
+    var len = get_other_rule_length('rule_number2');
+    var html = '';
+    html += '<div class="item form-group othersrules">';
+    html += '<label class="control-label col-md-3 col-sm-3 col-xs-12">';
+    html += '其他概率'+len+'： <span class="required">*</span>';
+    html += '</label>';
+    html += '<div class="col-md-6 col-sm-6 col-xs-12 input-group">';
+    html += '<input type="text" name="other_probability[]" value="{$config.othertule}" min="0" placeholder="概率设置，0-100" required="required" class="form-control col-md-7 col-xs-12">';
+    html += '<span class="input-group-btn"><button class="btn btn-danger" type="button" onclick="remove_parents(this)">删除</button></span>';
+    html += '</div>';
+    html += '</div>';
+    $(".otherprobability").append(html);
+  }
+
+  function get_other_rule_length(id){
+    var len = $("#"+id);
+    var number = len.val();
+    len.val(parseInt(len.val())+1)
+    return number;
+  }
+
+</script>
+</body>
+</html>

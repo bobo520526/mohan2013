@@ -1,0 +1,171 @@
+<include file="Public:header" />
+<link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+<!-- bootstrap-progressbar -->
+<link href="../vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+<!-- PNotify -->
+<link href="../vendors/pnotify/dist/pnotify.css" rel="stylesheet">
+<link href="../vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
+<link href="../vendors/pnotify/dist/pnotify.nonblock.css" rel="stylesheet">
+
+<!-- page content -->
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title"></div>
+
+        <div class="clearfix"></div>
+
+        <div class="">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2><i class="fa fa-bars"></i> 游戏配置</h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                            <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                                <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                                    <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">金币提现管理</a></li>
+                                    <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">余额提现管理</a></li>
+                                </ul>
+                                <div id="myTabContent" class="tab-content">
+                                    <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+                                        <table id="datatable" class="table table-striped table-bordered">
+                                            <thead>
+                                            <tr>
+                                                <th>昵称</th>
+                                                <th>申请金币个数</th>
+                                                <th>申请时间</th>
+                                                <th>申请状态</th>
+                                                <th>操作状态</th>
+                                                <th>到账时间</th>
+                                                <th>操作</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <foreach name="coin_list" item="vo">
+                                                <tr>
+                                                    <td>{$vo.nickname}</td>
+                                                    <td>{$vo.apply_coin}</td>
+                                                    <td>{$vo.createtime|date="Y-m-d H:i",###}</td>
+                                                    <td>{$status[$vo['apply_status']]}</td>
+                                                    <td>{$check_type[$vo['check_type']]}</td>
+                                                    <td>{$vo.payment_time|date="Y-m-d H:i",###}</td>
+                                                    <td>
+                                                        <if condition="$vo['apply_status'] eq 0">
+                                                        <if condition="$vo['subscribe'] eq 1">
+                                                            <a class="btn btn-round btn-primary" data-href="{:U('Withdrawals/coin_pass',array('id'=>$vo['id']))}" onclick="confirmd(this,'确认通过审核？',1)">通过</a>
+                                                            <else/>
+                                                            <a class="btn btn-round btn-primary" data-href="{:U('Withdrawals/coin_pass',array('id'=>$vo['id']))}" onclick="confirmd(this,'确认通过审核？',1)">通过</a>
+                                                            <!--<a class="btn btn-round btn-default">该用户未关注</a>-->
+                                                        </if>
+                                                        <a class="btn btn-round btn-danger" data-href="{:U('Withdrawals/coin_nopass',array('id'=>$vo['id']))}" onclick="confirmd(this,'确认拒绝审核？',2)">拒绝</a>
+                                                        </if>
+                                                    </td>
+                                                </tr>
+                                            </foreach>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+                                        <table id="datatables" class="table table-striped table-bordered">
+                                            <thead>
+                                            <tr>
+                                                <th>昵称</th>
+                                                <th>申请金额</th>
+                                                <th>申请时间</th>
+                                                <th>申请状态</th>
+                                                <th>操作</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <foreach name="list" item="vo">
+                                                <tr>
+                                                    <td>{$vo.nickname}</td>
+                                                    <td>{$vo.apply_cash}</td>
+                                                    <td>{$vo.createtime|date="Y-m-d",###}</td>
+                                                    <td>{$status[$vo['apply_status']]}</td>
+                                                    <td>
+                                                        <a class="btn btn-round btn-primary" data-href="{:U('Withdrawals/pass',array('id'=>$vo['id']))}" onclick="confirmd(this,'确认通过审核？',1)">通过</a>
+                                                        <a class="btn btn-round btn-danger" data-href="{:U('Withdrawals/nopass',array('id'=>$vo['id']))}" onclick="confirmd(this,'确认拒绝审核？',2)">拒绝</a>
+                                                    </td>
+                                                </tr>
+                                            </foreach>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+<!-- /page content -->
+
+<!-- footer content -->
+<include file="Public:min_footer" />
+<!-- /footer content -->
+</div>
+</div>
+
+<div id="custom_notifications" class="custom-notifications dsp_none">
+    <ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group">
+    </ul>
+    <div class="clearfix"></div>
+    <div id="notif-group" class="tabbed_notifications"></div>
+</div>
+
+<!-- jQuery -->
+<script src="__PUBLIC__/vendors/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="__PUBLIC__/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="__PUBLIC__/vendors/fastclick/lib/fastclick.js"></script>
+<!-- NProgress -->
+<script src="__PUBLIC__/vendors/nprogress/nprogress.js"></script>
+<!-- bootstrap-progressbar -->
+<script src="__PUBLIC__/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+<!-- iCheck -->
+<script src="__PUBLIC__/vendors/iCheck/icheck.min.js"></script>
+<!-- PNotify -->
+<script src="__PUBLIC__/vendors/pnotify/dist/pnotify.js"></script>
+<script src="__PUBLIC__/vendors/pnotify/dist/pnotify.buttons.js"></script>
+<script src="__PUBLIC__/vendors/pnotify/dist/pnotify.nonblock.js"></script>
+<!-- Datatables -->
+<script src="__PUBLIC__/vendors/datatables.net/js/jquery.dataTables.js"></script>
+<script src="__PUBLIC__/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="__PUBLIC__/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script src="__PUBLIC__/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+<script src="__PUBLIC__/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+<script src="__PUBLIC__/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+<script src="__PUBLIC__/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+<script src="__PUBLIC__/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<script src="__PUBLIC__/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+<script src="__PUBLIC__/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+<script src="__PUBLIC__/vendors/jszip/dist/jszip.min.js"></script>
+<script src="__PUBLIC__/vendors/pdfmake/build/pdfmake.min.js"></script>
+<script src="__PUBLIC__/vendors/pdfmake/build/vfs_fonts.js"></script>
+<script src="__PUBLIC__/js/layer/layer.js" type="text/javascript"></script>
+<!-- Custom Theme Scripts -->
+<script src="__PUBLIC__/js/custom.min.js"></script>
+<script>
+    function confirmd(obj,title,type){
+        layer.confirm(title, function(index){
+            window.location.href = $(obj).attr("data-href");
+        });
+    }
+
+</script>
+</body>
+</html>

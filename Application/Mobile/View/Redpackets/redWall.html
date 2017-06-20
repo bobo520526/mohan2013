@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+		<title>我的红包</title>
+		<script src="__PUBLIC__/js/jquery-1.8.2.min.js" type="text/javascript"></script>
+		<script src="__PUBLIC__/js/layer/layer.js" type="text/javascript"></script>
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/redpack/css/myrest.css"/>
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/redpack/css/redWall.css"/>
+		<script>
+
+		jQuery(function (){
+
+			var count="{$list[0].redcount}";
+			for(var i=0;i<count;i++){
+							$(".box ul").append(" <li id=m"+i+"><span></span></li>");
+			}
+
+			$(".box li").each(function (e){
+				$(this).click(function (){
+			   if(!($("#m"+e+">span").html()>0)){
+					 $.post("operate",{"s":1},function (data){
+						var val = eval('(' + data + ')');
+					 if(val.status == 1){
+
+				$("#m"+e).css({
+					"background":"url('__PUBLIC__/redpack/images/opred.png') no-repeat",
+					"-webkit-background-size": "contain",
+					"background-size": "contain"
+				});
+				$("#m"+e+">span").html(val.price);
+
+					 }
+					 });
+
+				 }
+
+
+				});
+			});
+
+			$("#open").click(function(){
+				$(".box li").each(function (e){
+					  if(!($("#m"+e+">span").html()>0)){
+							$.post("operate",{"s":1},function (data){
+							 var val = eval('(' + data + ')');
+							if(val.status == 1){
+
+					 $("#m"+e).css({
+						 "background":"url('__PUBLIC__/redpack/images/opred.png') no-repeat",
+						 "-webkit-background-size": "contain",
+						 "background-size": "contain"
+					 });
+					 $("#m"+e+">span").html(val.price);
+
+							}
+							});
+						}
+
+				});
+			});
+		});
+		</script>
+	</head>
+	<body>
+		<!--红包墙开始-->
+		<div class="wall">
+			<!--一键开启按钮-->
+			<input type="button" id="open" />
+			<!--红包-->
+			<div class="box">
+				<ul>
+
+
+
+			</ul>
+			</div>
+		</div>
+		<!--红包墙结束-->
+	</body>
+</html>

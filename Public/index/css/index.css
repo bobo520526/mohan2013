@@ -1,0 +1,303 @@
+a,
+input,
+button {
+	/*清除点击阴影*/
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+a {
+	text-decoration: none;
+	color: #000000;
+}
+
+a:hover {
+	text-decoration: none;
+	color: #5f75c8;
+}
+
+input,
+button {
+	/*清除按钮的圆角*/
+	-webkit-appearance: none;
+	border-radius: 0;
+}
+
+body {
+	/*选中文字设置*/
+	margin: 0;
+	-webkit-user-select: none;
+	-webkit-text-size-adjust: 100%;
+}
+
+body * {
+	/*文字设置*/
+	-webkit-user-select: none;
+	font-family: Helvetica;
+}
+
+h2,
+ul,
+li,
+p,
+dd,
+dt {
+	margin: 0;
+	padding: 0;
+}
+
+ul,
+li {
+	list-style: none;
+}
+
+
+/*————————————————个人中心开始————————————————*/
+
+#personal {
+	width: 100%;
+	height: 100%;
+	background: url(../img/personal_bg.png) no-repeat;
+	-webkit-background-size: cover;
+	background-size: cover;
+	overflow: hidden;
+}
+
+.personal_head {
+	width: 100%;
+	height: 5.17rem;
+	overflow: hidden;
+	padding-top: 2.125rem;
+}
+
+.personal_pic {
+	float: left;
+	position: relative;
+	left: 2.125rem;
+	top: 0;
+	width: 3.9rem;
+	height: 3.9rem;
+	border: 0.125rem solid #f7e8cc;
+	border-radius: 50%;
+	overflow: hidden;
+}
+
+.personal_pic img {
+	width: 3.9rem;
+	height: 3.9rem;
+}
+
+.personal_inf {
+	float: left;
+	position: relative;
+	top: 0;
+	left: 3.5rem;
+	width: 5.5rem;
+	height: 3.9rem;
+	padding: 0.4rem 0;
+	box-sizing: border-box;
+}
+
+.personal_name {
+	width: 5.5rem;
+	height: 0.9rem;
+	font-size: 0.75rem;
+	color: #333333;
+	background: rgba(0, 0, 0, 0);
+	border: 0;
+	float: left;
+}
+
+.personal_id {
+	position: relative;
+	top: 1.3rem;
+	left: 0;
+	width: 5.5rem;
+	height: 0.9rem;
+	font-size: 0.6rem;
+	color: #555555;
+	background: rgba(0, 0, 0, 0);
+	border: 0;
+	float: left;
+}
+
+.personal_nav {
+	float: left;
+	width: 100%;
+	height: 2.25rem;
+	padding: 0.25rem 0rem 0.25rem 0rem;
+	background: #ededed;
+	font-size: 0.7rem;
+	box-sizing: border-box;
+}
+
+.personal_nav dl {
+	float: left;
+	width: 33.3%;
+	height: 1.875rem;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+.personal_nav dl:nth-of-type(2){
+	border-left: 0.025rem solid #d8d8d8;
+	border-right: 0.025rem solid #d8d8d8;
+}
+
+.personal_nav dl dt{
+	color: #333333;
+	font-size: 0.7rem;
+	text-align: center;
+}
+
+.personal_nav dl dd {
+	color: #555555;
+	font-size: 0.6rem;
+	text-align: center;
+}
+
+.personal_cont {
+	float: left;
+	width: 100%;
+	height: 18.675rem;
+	background: #e6e6e6;
+	float: left;
+	padding: 0.5rem 0.75rem;
+	box-sizing: border-box;
+}
+
+.personal_list {
+	font-size: 0.65rem;
+}
+
+.personal_list li {
+	width: 100%;
+	height: 1.75rem;
+	border-bottom: 0.025rem solid #d8d8d8;
+	line-height: 1.75rem;
+}
+
+.personal_list li img {
+	float: right;
+	width: 0.5rem;
+	height: 0.75rem;
+	margin: 0.5rem 0;
+}
+
+.personal_foot {
+	width: 100%;
+	height: 1.5rem;
+	position: fixed;
+	bottom: 0rem;
+	border-top: 0.025rem solid #d8d8d8;
+	z-index: 100;
+	background: #e6e6e6;
+	padding: 0.25rem 0rem;
+}
+
+.foot_game,
+.foot_code,
+.foot_center {
+	float: left;
+	width: 33.3%;
+	height: 1.5rem;
+	text-align: center;
+	line-height: 1.5rem;
+	font-size: 0.65rem;
+	box-sizing: border-box;
+}
+
+.foot_code:nth-of-type(2){
+	border-left: 0.025rem solid #d8d8d8;
+	border-right: 0.025rem solid #d8d8d8;
+}
+
+/*————————————————个人中心结束————————————————*/
+
+
+/*————————————————金币记录开始————————————————*/
+
+.goldrec {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	background: #e6e6e6;
+	padding: 0 0.375rem;
+	box-sizing: border-box;
+}
+
+.goldrec_table {
+	width: 100%;
+	height: 100%;
+	border: solid #b9b9b9;
+	border: 0;
+	color: #595959;
+}
+
+.goldrec_table tr {
+	height: 1.6rem;
+}
+
+.goldrec_table tr th:nth-of-type(1) {
+	border: solid #b9b9b9;
+	border-width: 0rem 0.025rem 0.025rem 0rem;
+	font-size: 0.75rem;
+	font-weight: normal;
+}
+
+.goldrec_table tr th:nth-of-type(2) {
+	border: solid #b9b9b9;
+	border-width: 0rem 0rem 0.025rem 0rem;
+	font-size: 0.75rem;
+	font-weight: normal;
+}
+
+.goldrec_table tr td:nth-of-type(1) {
+	border: solid #b9b9b9;
+	border-width: 0rem 0.025rem 0.025rem 0rem;
+	font-size: 0.7rem;
+	text-align: center;
+}
+
+.goldrec_table tr td:nth-of-type(2) {
+	border: solid #b9b9b9;
+	border-width: 0rem 0rem 0.025rem 0rem;
+	font-size: 0.7rem;
+	text-align: center;
+}
+
+
+/*————————————————金币记录结束————————————————*/
+
+
+/*————————————————二维码开始————————————————*/
+
+#erwei_page {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+.erwei_bg{
+	width: 16rem;
+	height: 28.4rem;
+	background: url(../img/erwei_bg.png) no-repeat;
+	-webkit-background-size: cover;
+	background-size: cover;
+}
+
+.erwei{
+	position: relative;
+	top: 10.525rem;
+	left: 5.225rem;
+	width: 5.525rem;
+	height: 5.65rem;
+	border: 0.025rem solid #ee252e;
+	border-radius: 0.2rem;
+	overflow: hidden;
+	box-sizing: border-box;
+}
+
+.erwei img{
+	width: 5.625rem;
+	height: 5.75rem;
+}
+/*————————————————二维码结束————————————————*/

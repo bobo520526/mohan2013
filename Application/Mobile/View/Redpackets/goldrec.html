@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>获得金币记录</title>
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/index/css/index.css" />
+		<style type="text/css">
+			body{
+				background: #e6e6e6;
+			}
+		</style>
+		<script src='__PUBLIC__/js/jquery-1.8.2.min.js' ></script>
+		<script src="__PUBLIC__/index/js/rem.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/index/js/index.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<div class="goldrec">
+			<table class="goldrec_table" border="0" cellspacing="" cellpadding="">
+				<tr>
+					<th>游戏时间</th>
+					<th>所得金币</th>
+				</tr>
+				<volist name="list" id="vo">
+					<tr>
+						<td>{$vo.addtime|date="Y-m-d H:i:s",###}</td>
+           <td>{$vo.redprice}</td>
+					</tr>
+
+				</volist>
+
+			</table>
+		</div>
+	</body>
+
+</html>

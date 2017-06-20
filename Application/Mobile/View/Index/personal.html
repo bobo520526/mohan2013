@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>个人中心</title>
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/index/css/index.css"/>
+		<script src="__PUBLIC__/js/jquery-1.8.2.min.js" type="text/javascript"></script>
+		<script src="__PUBLIC__/index/js/rem.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/index/js/index.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/js/layer/layer.js" type="text/javascript"></script>
+		<link href="__PUBLIC__/plugins/php-emoji-master/emoji.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body>
+		<div id="personal">
+			<div class="personal_head">
+				<div class="personal_pic">
+					<if condition="$member['head_pic'] eq null">
+						<img src="__PUBLIC__/images/defaule_header.png"/>
+						<else/>
+						<img src="{$member.head_pic}"/>
+					</if>
+				</div>
+				<div class="personal_inf">
+					<div class="personal_name" id="name">{$nickname}</div>
+					<div class="personal_id" id="num">{$member_id}</div>
+					<!--<input type="text" name="name" class="personal_name" id="name" value="{$nickname}" readonly/>-->
+					<!--<input type="number" name="num" class="personal_id" id="num" value="{$member_id}" readonly/>-->
+				</div>
+			</div>
+			<div class="personal_nav">
+				<dl>
+					<dt>佣金总额</dt>
+					<dd>{$my_commission}元</dd>
+				</dl>
+				<dl>
+					<dt>已提金额</dt>
+					<dd>{$my_withdrawals}元</dd>
+				</dl>
+				<dl>
+					<dt>账户余额</dt>
+					<dd>{$member.wallet|default="0"}元</dd>
+				</dl>
+			</div>
+			<div class="personal_cont">
+				<ul class="personal_list">
+					<li onclick='window.location.href="{:U('Redpackets/gold')}"'>累计金币：<span>{$redcount}个</span><a href="{:U('Redpackets/gold')}"><img src="__PUBLIC__/index/img/personal_btn.png"/></a></li>
+					<!--<li onclick='window.location.href="{:U('Index/withdrawals')}"'>可提现余额：<span>{$member.wallet|default="0"}元</span><a href="{:U('Index/withdrawals')}"><img src="__PUBLIC__/index/img/personal_btn.png"/></a></li>-->
+					<if condition="$distribution_config['coin_off'] eq 1">
+						<li onclick='window.location.href="{:U('Index/add_withdrawal_coin')}"'>提现金币：<span>{$redcount}个</span><a href="{:U('Index/add_withdrawal_coin')}"><img src="__PUBLIC__/index/img/personal_btn.png"/></a></li>
+					</if>
+					<li onclick='window.location.href="{:U('Index/extension')}"'>我的推广<a href="{:U('Index/extension')}"> <img src="__PUBLIC__/index/img/personal_btn.png"/></a></li>
+					<li onclick='window.location.href="{:U('Redpackets/recharge')}"'>购买金币<a href="{:U('Redpackets/recharge')}"> <img src="__PUBLIC__/index/img/personal_btn.png"/></a></li>
+					<li onclick='window.location.href="{:U('Redpackets/redWall')}"'>我的红包：<span style="color: red;">{$redc}</span>个<a href="{:U('Redpackets/redWall')}"><img src="__PUBLIC__/index/img/personal_btn.png"/></a></li>
+					<!--<li onclick='window.location.href="{:U('Activity/index')}"'>活动管理：<a href="{:U('Activity/index')}"><img src="__PUBLIC__/index/img/personal_btn.png"/></a></li>-->
+					<li onclick='window.location.href="{:U('Customer/index')}"'>联系客服：<a href="{:U('Customer/index')}"><img src="__PUBLIC__/index/img/personal_btn.png"/></a></li>
+				</ul>
+			</div>
+			<div class="personal_foot">
+				<div class="foot_game"><a href="{:U('Index/gamelist')}">游戏中心</a></div>
+				<div class="foot_code"><a href="{:U('Index/extension')}">个人二维码</a></div>
+				<div class="foot_center"><a href="{:U('Index/index')}">个人中心</a></div>
+			</div>
+		</div>
+	</body>
+</html>

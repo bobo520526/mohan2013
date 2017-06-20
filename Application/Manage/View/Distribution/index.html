@@ -1,0 +1,386 @@
+<include file="Public:header" />
+<link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+<!-- bootstrap-progressbar -->
+<link href="../vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+<!-- PNotify -->
+<link href="../vendors/pnotify/dist/pnotify.css" rel="stylesheet">
+<link href="../vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
+<link href="../vendors/pnotify/dist/pnotify.nonblock.css" rel="stylesheet">
+
+<!-- page content -->
+<div class="right_col" role="main">
+  <div class="">
+    <div class="page-title">
+      <div class="title_left">
+        <h3>分销管理</h3>
+      </div>
+
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2><i class="fa fa-bars"></i> 分销设置</h2>
+            <ul class="nav navbar-right panel_toolbox">
+              <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+              </li>
+              <li><a class="close-link"><i class="fa fa-close"></i></a>
+              </li>
+            </ul>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+          <form action="" method="post">
+            <div class="" role="tabpanel" data-example-id="togglable-tabs">
+              <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">基本设置</a></li>
+                <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">返利设置</a></li>
+              </ul>
+              <div id="myTabContent" class="tab-content">
+                <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+                  <div class="item form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                      自动提现开关： <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12 input-group">
+
+                      <div class="radio">
+                        <label>
+                          <input type="radio" <if condition="$config['distribution_off'] eq 1">checked</if> value="1" id="optionsRadios1" name="distribution_off"> 开
+                        </label>
+                        <label>
+                          <input type="radio" <if condition="$config['distribution_off'] eq 2">checked</if> value="2" id="optionsRadios2" name="distribution_off"> 关
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="item form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="min_cash">
+                      每次提现最小金额： <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12 input-group">
+                      <input type="number" id="min_cash" name="min_cash" value="{$config.min_cash}" min="0" placeholder="每次提现最小金额" required="required" class="form-control col-md-7 col-xs-12">
+                              <span class="input-group-btn">
+                                <button class="btn btn-dark" type="button">￥</button>
+                            </span>
+                    </div>
+                  </div>
+                  <div class="item form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="counter_ree">
+                      提现手续费： <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12 input-group">
+                      <input type="number" id="counter_ree" name="counter_ree" value="{$config.counter_ree}" min="0" max="100" placeholder="提现手续费" required="required" class="form-control col-md-7 col-xs-12">
+                              <span class="input-group-btn">
+                                <button class="btn btn-dark" type="button">%</button>
+                            </span>
+                    </div>
+                  </div>
+                  <div class="item form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                      提现方式： <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12 input-group">
+                      <div class="checkbox">
+                        <label>
+                          <input type="checkbox" name="ways[]" <if condition="in_array(1,$config['ways'])">checked</if> value="1"> 微信红包
+                        </label>
+                        <label>
+                          <input type="checkbox" name="ways[]" <if condition="in_array(2,$config['ways'])">checked</if> value="2"> 微信企业付款
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                      充值开关限制： <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12 input-group">
+
+                      <div class="radio">
+                        <label>
+                          <input type="radio" <if condition="$config['limit_off'] eq 1">checked</if> value="1" id="limit_off1" name="limit_off"> 开
+                        </label>
+                        <label>
+                          <input type="radio" <if condition="$config['limit_off'] eq 2">checked</if> value="2" id="limit_off2" name="limit_off"> 关
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                    充值时间限制： <span class="required">*</span>
+                  </label>
+                  <div class="col-md-6 col-sm-6 col-xs-12 input-group">
+
+                    <div class="radio">
+                      <label>
+                        <input type="radio" <if condition="$config['limit_time'] eq 1">checked</if> value="1" id="charge1" name="limit_time"> 开
+                      </label>
+                      <label>
+                        <input type="radio" <if condition="$config['limit_time'] eq 2">checked</if> value="2" id="charge2" name="limit_time"> 关
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                  <div class="item form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="counter_ree">
+                      分销金额： <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12 input-group">
+                      <input type="number" id="distribution_cash" name="distribution_cash" value="{$config.distribution_cash}" min="0" placeholder="分销金额" required="required" class="form-control col-md-7 col-xs-12">
+                              <span class="input-group-btn">
+                                <button class="btn btn-dark" type="button">￥</button>
+                            </span>
+                    </div>
+                  </div>
+                  <div class="item form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                      金币充值： <span class="required">*</span>
+                      </label>
+                    <span style="color:red;">充值金币说明：1RMB = ？金币</span>
+                    <div class="col-md-3 col-sm-3 input-group">
+                      <input type="number" name="charge_rmb"  value="{$config.charge_rmb}" min="0" placeholder="RMB" required="required" class="form-control col-md-7 col-xs-3">
+                      <span class="input-group-btn"><button class="btn btn-dark" type="button">等于</button></span>
+                      <input style="margin-left: -5px;" type="number" name="charge_coin"  value="{$config.charge_coin}" min="0" placeholder="游戏金币" required="required" class="form-control col-md-7 col-xs-3">
+                      </div>
+                    </div>
+                  <div class="item form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="deduction_coin">
+                      开始游戏扣除金币个数： <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12 input-group">
+                      <input type="number" id="deduction_coin" name="deduction_coin" value="{$config.deduction_coin}" min="0" placeholder="开始游戏扣除金币个数" required="required" class="form-control col-md-7 col-xs-12">
+                              <span class="input-group-btn">
+                                <button class="btn btn-dark" type="button">个</button>
+                            </span>
+                    </div>
+                  </div>
+
+                  <div class="item form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                      金币提现开关： <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12 input-group">
+
+                      <div class="radio">
+                        <label>
+                          <input type="radio" <if condition="$config['coin_off'] eq 1">checked</if> value="1" id="coin_off1" name="coin_off"> 开
+                        </label>
+                        <label>
+                          <input type="radio" <if condition="$config['coin_off'] eq 2">checked</if> value="2" id="coin_off2" name="coin_off"> 关
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                      金币提现审核： <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12 input-group">
+
+                      <div class="radio">
+                        <label>
+                          <input type="radio" <if condition="$config['coin_check'] eq 1">checked</if> value="1" id="coin_check1" name="coin_check"> 需要审核
+                        </label>
+                        <label>
+                          <input type="radio" <if condition="$config['coin_check'] eq 2">checked</if> value="2" id="coin_check2" name="coin_check"> 不需要审核
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="item form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                      金币数量提现审核： <span class="required">*</span>
+                    </label>
+                    <span style="color:red;">金币提现超过100个是否需要审核</span>
+                    <div class="col-md-6 col-sm-6 col-xs-12 input-group">
+
+                      <div class="radio">
+                        <label>
+                          <input type="radio" <if condition="$config['coin_num_check'] eq 1">checked</if> value="1" id="coin_num_check1" name="coin_num_check"> 需要审核
+                        </label>
+                        <label>
+                          <input type="radio" <if condition="$config['coin_num_check'] eq 2">checked</if> value="2" id="coin_num_check2" name="coin_num_check"> 不需要审核
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="item form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="min_coin">
+                      最小金币提现： <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12 input-group">
+                      <input type="number" id="min_coin" name="min_coin" value="{$config.min_coin}" min="0" placeholder="最小提现的游戏金币个数" required="required" class="form-control col-md-7 col-xs-12">
+                              <span class="input-group-btn">
+                                <button class="btn btn-dark" type="button">个</button>
+                            </span>
+                    </div>
+                  </div>
+
+
+                </div>
+
+                <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+                  <div class="item form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                      分销级别： <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12 input-group">
+                      <div class="col-md-9 col-sm-9 col-xs-12 input-group">
+                        <select name="distributionval" class="form-control" onchange="disb(this.value)">
+                          <option value="1" <if condition="$config['distributionval'] eq 1">selected</if>>一级</option>
+                          <option value="2" <if condition="$config['distributionval'] eq 2">selected</if>>两级</option>
+                          <option value="3" <if condition="$config['distributionval'] eq 3">selected</if>>三级</option>
+                          <option value="4" <if condition="$config['distributionval'] eq 4">selected</if>>四级</option>
+                          <option value="5" <if condition="$config['distributionval'] eq 5">selected</if>>五级</option>
+                          <option value="6" <if condition="$config['distributionval'] eq 6">selected</if>>六级</option>
+                          <option value="7" <if condition="$config['distributionval'] eq 7">selected</if>>七级</option>
+                          <option value="8" <if condition="$config['distributionval'] eq 8">selected</if>>八级</option>
+                          <option value="9" <if condition="$config['distributionval'] eq 9">selected</if>>九级</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="fenxiao">
+              <if condition="$config['distributionval'] eq 1">
+                      <div class="item form-group fenxiao">
+                       <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                          分销比例： <span class="required">*</span>
+                         </label>
+                       <div class="col-md-2 col-sm-2 input-group">
+                         <span class="input-group-btn"><button type="button" class="btn btn-dark">1级</button></span>
+                         <input type="number" name="distrib_pro[]" value="{$config['distrib_pro'][0]}" min="0" max="100" placeholder="比例" required="required" class="form-control col-md-7 col-xs-3">
+                         <span class="input-group-btn"><button class="btn btn-dark" type="button">%</button></span>
+                         </div>
+                       </div>
+               <else/>
+                <foreach name="distrib_pro" item="item" key="key">
+
+                    <div class="item form-group fenxiao">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+                      <div class="col-md-2 col-sm-2 input-group">
+                        <span class="input-group-btn"><button type="button" class="btn btn-dark">{++$key}级</button></span>
+                        <input type="number" name="distrib_pro[]" value="{$item}" min="0" max="100" placeholder="比例" required="required" class="form-control col-md-7 col-xs-3">
+                        <span class="input-group-btn"><button class="btn btn-dark" type="button">%</button></span>
+                      </div>
+                    </div>
+                </foreach>
+              </if>
+
+                  </div>
+
+
+                  <!--<div class="item form-group">-->
+                    <!--<label class="control-label col-md-3 col-sm-3 col-xs-12" for="current_member_pro">-->
+                      <!--当前用户比例： <span class="required">*</span>-->
+                    <!--</label>-->
+                    <!--<div class="col-md-6 col-sm-6 col-xs-12 input-group">-->
+                      <!--<input type="number" max="100" id="current_member_pro" name="current_member_pro" value="{$config.current_member_pro}" min="0" placeholder="当前用户的比例" required="required" class="form-control col-md-7 col-xs-12">-->
+                              <!--<span class="input-group-btn">-->
+                                <!--<button class="btn btn-dark" type="button">%</button>-->
+                            <!--</span>-->
+                    <!--</div>-->
+                  <!--</div>-->
+
+                  <div class="item form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="pay_ways">
+                      支付方式： <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12 input-group">
+                      <div class="radio">
+                        <label>
+                          <input type="radio" checked="" value="1" id="pay_ways" name="pay_ways"> 微信支付
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">提交</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>
+<!-- /page content -->
+
+<!-- footer content -->
+<include file="Public:min_footer" />
+<!-- /footer content -->
+</div>
+</div>
+
+<div id="custom_notifications" class="custom-notifications dsp_none">
+  <ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group">
+  </ul>
+  <div class="clearfix"></div>
+  <div id="notif-group" class="tabbed_notifications"></div>
+</div>
+
+<!-- jQuery -->
+<script src="__PUBLIC__/vendors/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="__PUBLIC__/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="__PUBLIC__/vendors/fastclick/lib/fastclick.js"></script>
+<!-- NProgress -->
+<script src="__PUBLIC__/vendors/nprogress/nprogress.js"></script>
+<!-- bootstrap-progressbar -->
+<script src="__PUBLIC__/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+<!-- iCheck -->
+<script src="__PUBLIC__/vendors/iCheck/icheck.min.js"></script>
+<!-- PNotify -->
+<script src="__PUBLIC__/vendors/pnotify/dist/pnotify.js"></script>
+<script src="__PUBLIC__/vendors/pnotify/dist/pnotify.buttons.js"></script>
+<script src="__PUBLIC__/vendors/pnotify/dist/pnotify.nonblock.js"></script>
+
+<!-- Custom Theme Scripts -->
+<script src="__PUBLIC__/js/custom.min.js"></script>
+<script>
+  function disb(val){
+    $(".fenxiao").html("")
+      if(val == 1){
+        var first_html = '<div class="item form-group fenxiao">';
+        first_html += '<label class="control-label col-md-3 col-sm-3 col-xs-12">';
+        first_html += '分销比例： <span class="required">*</span>';
+        first_html += '</label>';
+        first_html += '<div class="col-md-2 col-sm-2 input-group">';
+        first_html += '<span class="input-group-btn"><button type="button" class="btn btn-dark">1级</button></span>';
+        first_html += '<input type="number" name="distrib_pro[]" value="" min="0" max="100" placeholder="比例" required="required" class="form-control col-md-7 col-xs-3">';
+        first_html += '<span class="input-group-btn"><button class="btn btn-dark" type="button">%</button></span>';
+        first_html += '</div>';
+        first_html += '</div>';
+        $(".fenxiao").append(first_html);
+      }else{
+        var html = '';
+        for(var i=1;i<=val;i++){
+          html += '<div class="item form-group fenxiao">';
+          html += '<label class="control-label col-md-3 col-sm-3 col-xs-12"></label>';
+          html += '<div class="col-md-2 col-sm-2 input-group">';
+          html += '<span class="input-group-btn"><button type="button" class="btn btn-dark">'+i+'级</button></span>';
+          html += '<input type="number" name="distrib_pro[]" value="" min="0" max="100" placeholder="比例" required="required" class="form-control col-md-7 col-xs-3">';
+          html += '<span class="input-group-btn"><button class="btn btn-dark" type="button">%</button></span>';
+          html += '</div>';
+          html += '</div>';
+        }
+        $(".fenxiao").append(html);
+      }
+  }
+
+
+</script>
+</body>
+</html>
